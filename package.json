@@ -1,0 +1,29 @@
+{
+	"name": "mern-project",
+	"version": "1.0.0",
+	"description": "",
+	"main": "server.js",
+	"scripts": {
+		"start": "node backend/server.js",
+		"server": "nodemon backend/server.js"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/mcwachira/mern-project.git"
+	},
+	"author": "mcwachira",
+	"license": "ISC",
+	"bugs": {
+		"url": "https://github.com/mcwachira/mern-project/issues"
+	},
+	"homepage": "https://github.com/mcwachira/mern-project#readme",
+	"dependencies": {
+		"colors": "^1.4.0",
+		"dotenv": "^16.0.3",
+		"express": "^4.18.2",
+		"mongoose": "^6.7.1"
+	},
+	"devDependencies": {
+		"nodemon": "^2.0.20"
+	}
+}
