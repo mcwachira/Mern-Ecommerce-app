@@ -17,6 +17,7 @@ app.use(express.urlencoded({extended:false}))
 app.use(errorHandler)
 
 app.use('/api/goals',require('./routes/goalRoutes') )
+app.use('/api/user', require('./routes/userRoute'))
 
 app.listen(PORT, () => {
     console.log(`server working on port ${PORT}`)
