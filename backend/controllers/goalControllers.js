@@ -1,12 +1,12 @@
 const asyncHandler = require('express-async-handler')
 const Goals = require('../models/goalModel')
-
+const User = require('../models/userModel')
 //@desc  get  goals
 //@route GET  /api/goals
 //@access Public
 
 const getGoals = asyncHandler(async (req, res) => {
-    const goals = await Goals.find()
+    const goals = await Goals.find({user:req.user.id})
     res.status(200).send(goals)
 })
 
@@ -21,6 +21,11 @@ const createGoals = asyncHandler(async(req, res) => {
     console.log(req.body)
 
     const {name, description} = req.body
+
+    // const goal = await Goal.create ({
+    //     text:req.body.text;
+    //     user:req.user.id
+    // })
     const newGoal = await new Goals({name, description}).save()
     res.status(200).json(newGoal)
 })
@@ -37,6 +42,21 @@ const updateGoals = asyncHandler(async (req, res) => {
     res.status(400)
     throw new Error('Goal not found')
     
+   }
+
+   const user = User.findById(req.user.id)
+   //first check if user exist
+   
+   if(!user){
+    res.status(401)
+    throw new Error('User Not found')
+   }
+
+   //check the yser updating the specific goal
+
+   if(goal.user.toString() !== user.id){
+    res.status(401)
+    throw new Error('User Not permitted to update the goal')
    }
 
    const updatedGoal =await Goals.findByIdAndUpdate(req.params.id,req.body,{
@@ -58,6 +78,22 @@ const deleteGoals = asyncHandler(async (req, res) => {
         throw new Error('Goal not found')
 
     }
+
+
+   const user = User.findById(req.user.id)
+   //first check if user exist
+   
+   if(!user){
+    res.status(401)
+    throw new Error('User Not found')
+   }
+
+   //check the yser updating the specific goal
+
+   if(goal.user.toString() !== user.id){
+    res.status(401)
+    throw new Error('User Not permitted to update the goal')
+   }
 
    // const newGoals = await Goals.findByIdAndDelete(req.params.id)
    await goal,remove()
