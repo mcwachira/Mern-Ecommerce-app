@@ -4,6 +4,7 @@ const goalsSchema = new mongoose.Schema({
 
 
 
+    //connecting the specific user to the goal created
     user:{
         type:mongoose.Schema.Types.ObjectId,
         required:true,
@@ -27,6 +28,6 @@ const goalsSchema = new mongoose.Schema({
 
 }, { timestamps: true })
 
-
+// console.log(Schema)
 
 module.exports = mongoose.model('Goals', goalsSchema)
