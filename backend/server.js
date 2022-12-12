@@ -1,28 +1,61 @@
 const express = require('express')
 const dotEnv = require('dotenv').config();
 const colors = require('colors')
-const bodyParser = require('body-parser');
-const {errorHandler}   = require('./middleware/errorMiddleware')
+const cookieParser = require('cookie-parser')
+const morgan = require('morgan')
+const cors = require('cors')
+const path = require('path')
 const connectDb = require('./config/db')
+
+
+
+
+
+//initialize express app
 const app = express()
 
-const PORT = process.env.PORT || 5000;
+//create our port 
+const PORT = process.env.PORT || 8001
 
+//connect our database
 connectDb()
 
-//using the body-parser middleware to parse the JSON request body,
-app.use(bodyParser.json())
+// for parsing application/json
+app.use(express.json({ limit: "30mb", extended: true }))
+// for parsing application/x-www-form-urlencoded
+app.use(express.urlencoded({ limit: "30mb", extended: true }))
 
-//to get values from our body
 
-app.use(express.json())
-app.use(express.urlencoded({extended:false}))
+//enabling cors
+app.use(cors())
 
-app.use(errorHandler)
+//enables us to se logs in our terminal
+app.use(morgan('tiny')) //used to log request from the frontend
+//get cookies
+app.use(cookieParser())
 
-app.use('/api/goals',require('./routes/goalRoutes') )
-app.use('/api/user', require('./routes/userRoute'))
+
+/*enabling express to locate static files
+app.use(express.static('public')) */
+
+//enabling express to locate static files using virtual path /
+// app.use('/', express.static(path.join(__dirname, '/public')))
+
+
+//import my routes
+
+const authRouter = require('./routes/authRoute')
+const userRouter = require('./routes/userRoute')
+const categoryRouter = require('./routes/categoryRoute')
+const productRouter = require('./routes/productRoute')
+
+
+
+app.use('/api', authRouter)
+app.use('/api', userRouter)
+app.use('/api', categoryRouter)
+app.use('/api', productRouter)
 
 app.listen(PORT, () => {
     console.log(`server working on port ${PORT}`)
-} )
+})

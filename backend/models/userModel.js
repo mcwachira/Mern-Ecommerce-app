@@ -2,22 +2,38 @@ const mongoose = require('mongoose')
 
 const userSchema = mongoose.Schema({
 
-    name:{
+    name: {
         type: String,
-        required: [true, 'please add a name'],
+        trim: true,
+        required: true,
         minlength: [2, 'to short'],
         maxlength: [32, ' too long'],
 
     },
     email: {
         type: String,
-        required: [true, 'please add an email'],
-        unique:true
+        trim: true,
+        required: true,
+        unique: true
     },
     password: {
         type: String,
         required: [true, 'please add  password'],
-       
+
+    },
+    about: {
+        type: String,
+        trim: true,
+
+
+    },
+    role: {
+        type: Number,
+        default: 0
+    },
+    history: {
+        type: Array,
+        default: []
     }
 
 }, { timestamps: true })
