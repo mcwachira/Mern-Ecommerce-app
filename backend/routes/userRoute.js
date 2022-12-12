@@ -1,17 +1,22 @@
 const express = require('express');
-const {protect} = require('../middleware/authMIddleware')
 const router = express.Router()
-const { registerUser,
-    loginUser,
-    getUserData } = require('../controllers/userController')
 
-//register user
-router.post('/', registerUser);
+const {
+    getUserById,
 
-//login user
-router.post('/login', loginUser);
+} = require('../controllers/userController')
+const { requireSignIn,
+    isAdmin,
+    isAuth } = require('../controllers/authController')
 
+router.get('/users/:userId', requireSignIn, isAuth, isAdmin, async (req, res) => {
+    const profile = await req.profile
+    console.log(profile)
+    res.json({
+        user: profile
+    })
+})
 
-router.get('/me', protect, getUserData);
+router.param('userId', getUserById)
 
 module.exports = router

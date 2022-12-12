@@ -1,13 +1,13 @@
 const mongoose = require('mongoose');
 const colors = require('colors')
 
-const connectDb = async() => {
+const connectDb = async () => {
     try {
-     const connect = await mongoose.connect(process.env.MONGO_URI, {
-         useNewUrlParser: true,
-         useUnifiedTopology: true,
-         name:'mern-goals-api'
-     })
+        const connect = await mongoose.connect(process.env.MONGO_URI, {
+            useNewUrlParser: true,
+            useUnifiedTopology: true,
+            name: 'mern-ecommerce-app'
+        })
 
         console.log(`MongoDb  connected ${connect.connection.host}`.blue.underline)
     } catch (error) {
