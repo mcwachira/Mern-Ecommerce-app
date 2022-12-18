@@ -22,16 +22,16 @@ router.post('/products/create', createProduct)
 
 
 //updating product
-router.put('/products/:id', verifyToken, updateProduct)
+router.put('/products/update/:id', verifyToken, updateProduct)
 
 //delete product
-router.delete('/products/:id', verifyToken, deleteProduct)
+router.delete('/products/delete/:id', verifyToken, deleteProduct)
 
 //get all products
-router.get('/products/find', verifyAdmin, getProductList)
+router.get('/products/', getProductList)
 
 //get a specific  product based on id
-router.get('/products/find/:id', verifyToken, verifyAdmin, getProductById)
+router.get('/products/:id', getProductById)
 
 
 //get product stats
