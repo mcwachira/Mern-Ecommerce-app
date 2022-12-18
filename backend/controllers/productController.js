@@ -4,37 +4,36 @@ const asyncHandler = require('express-async-handler')
 
 
 const createProduct = asyncHandler(async (req, res) => {
-    const { name, email, password } = req.body
+    const { name, desc, price, img, categories, size, color, inStock } = req.body
 
     //first thing is to check the data
 
-    if (!name || !email || !password) {
-        return res.status(400).json({ message: 'all fields are required' })
-    }
+    // if (!name || !email || !password) {
+    //     return res.status(400).json({ message: 'all fields are required' })
+    // }
 
     //check for existing user or duplicates
     //.exec() enables use to get a promise back
-    const duplicateUser = await User.findOne({ email }).lean().exec()
-    if (duplicateUser) {
-        return res.status(409).json({ message: 'user with that email already in use' })
-    }
+    // const duplicateUser = await User.findOne({ email }).lean().exec()
+    // if (duplicateUser) {
+    //     return res.status(409).json({ message: 'user with that email already in use' })
+    // }
 
     //hash the password
-    const hashedPassword = await bcrypt.hash(password, 10) //salt rounds 10
+    // const hashedPassword = await bcrypt.hash(password, 10) //salt rounds 10
 
-    const userObject = {
-        "name": name,
-        email: email,
-        'password': hashedPassword,
+    const productObject = {
+        name,
+        desc, price, img, categories, size, color, inStock
 
     }
-    const user = await User.create(userObject)
+    const product = await Product.create(productObject)
 
-    if (user) {
-        res.status(201).json(user)
+    if (product) {
+        res.status(201).json(product)
     } else {
 
-        res.status(400).json({ message: 'user not created . invalid user data' })
+        res.status(400).json({ message: 'product not created . invalid product data' })
     }
 })
 
@@ -42,7 +41,7 @@ const updateProduct = asyncHandler(async (req, res) => {
     const id = req.params.id
 
 
-    const { name, password, email } = req.body
+    const { name, desc, price, img, categories, size, color, inStock } = req.body
 
     //check if username is already in use
     // const duplicateUser = await User.findOne({ username }).lean().exec()
@@ -50,45 +49,42 @@ const updateProduct = asyncHandler(async (req, res) => {
     //     return res.status(409).json({ message: 'Username already in use' })
     // }
 
-    if (!name || !email) {
-        return res.status(400).json({ message: 'all fields are required' })
-    }
+    // if (!name || !email) {
+    //     return res.status(400).json({ message: 'all fields are required' })
+    // }
 
     //check id the user exist
-    const user = await User.findById(id).exec()
+    const product = await Product.findById(id).exec()
 
-    if (!user) {
-        return res.status(400).json({ message: ' No user with that id exits' })
+    if (!product) {
+        return res.status(400).json({ message: ' No product with that id exits' })
     }
 
 
 
-    //check if password is needed to change
-    let updatedPassword
-
-    if (password) {
-        //hash the password
-        updatedPassword = await bcrypt.hash(password, 10) //salt rounds
-    }
-
-    //update the user details
-    const updatedUserDetails = {
+    //update the product details
+    const updatedProductDetails = {
         name: name,
-        email: email,
-        password: updatedPassword
+        desc: desc,
+        price: price,
+        img: img,
+        categories: categories,
+        size: size,
+        color: color,
+        inStock: inStock
 
     }
 
-    const updatedUser = await User.findByIdAndUpdate(
-        id, updatedUserDetails, {
+    const updatedProduct = await Product.findByIdAndUpdate(
+        id, updatedProductDetails, {
         new: true
     })
 
-    res.status(200).json(updatedUser)
+    res.status(200).json(updatedProduct)
 })
 
 
-//delete user
+//delete product
 const deleteProduct = asyncHandler(async (req, res) => {
     const id = req.params.id
     const product = await Product.findByIdAndDelete(id)

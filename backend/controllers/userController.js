@@ -80,13 +80,13 @@ const getUserList = asyncHandler(async (req, res) => {
 
 
     const query = req.query.new
-    const users = query ? await User.find().select('name email updated created').sort({ _id: -1 }).limit(3) : await User.find()
+    const users = query ? await User.find().sort({ _id: -1 }).limit(3) : await User.find()
 
     if (!users?.length) {
         res.status(400).json({ message: 'no users found' })
     }
 
-    res.status(200).json(users)
+    res.status(200).json({ users })
 })
 
 

@@ -1,4 +1,6 @@
 import React from 'react'
+import { useSelector } from 'react-redux'
+import { Outlet, Link } from 'react-router-dom';
 import SearchIcon from '@mui/icons-material/Search';
 import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined';
 import { Badge } from '@mui/material';
@@ -17,38 +19,50 @@ import {
 } from './Navbar.styles'
 
 const Navbar = () => {
+
+    const quantity = useSelector((state) => state.cart.quantity)
+    console.log(quantity)
     return (
-        <Container>
-            <Wrapper>
-                <Left>
-                    <Language>
-                        EN
-                    </Language>
-                    <SearchContainer>
-                        <SearchIcon style={{ color: "gray", fontSize: 16 }} />
-                        <Input />
-                    </SearchContainer>
-                </Left>
+        <>
+            <Container>
+                <Wrapper>
+                    <Left>
+                        <Language>
+                            EN
+                        </Language>
+                        <SearchContainer>
+                            <SearchIcon style={{ color: "gray", fontSize: 16 }} />
+                            <Input />
+                        </SearchContainer>
+                    </Left>
 
-                <Center>
-                    <Logo>
-                        Ample Plus
-                    </Logo>
-                </Center>
+                    <Center>
+                        <Logo to='/'>
 
-                <Right>
-                    <MenuItem>Register</MenuItem>
+                            Ample Plus
 
-                    <MenuItem>SIGN IN</MenuItem>
 
-                    <MenuItem>
-                        <Badge badgeContent={1} color="primary">
-                            <ShoppingCartOutlinedIcon />
-                        </Badge>
-                    </MenuItem>
-                </Right>
-            </Wrapper>
-        </Container>
+                        </Logo>
+                    </Center>
+
+                    <Right>
+                        <MenuItem to='/signup'>Register</MenuItem>
+
+                        <MenuItem to='/signin'>Sign In</MenuItem>
+
+                        <MenuItem to='/cart'>
+                            <Badge badgeContent={quantity} color="primary">
+                                <ShoppingCartOutlinedIcon />
+                            </Badge>
+                        </MenuItem>
+                    </Right>
+                </Wrapper>
+
+            </Container>
+
+            <Outlet />
+        </>
+
     )
 }
 

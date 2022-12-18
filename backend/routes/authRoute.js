@@ -7,9 +7,9 @@ const {
 } = require('../controllers/authController')
 
 
-router.post('/register', registerUser)
+router.post('/auth/register', registerUser)
 
-router.post('/logIn', logInUser)
+router.post('/auth/logIn', logInUser)
 
 
 
