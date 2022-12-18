@@ -55,7 +55,7 @@ const logInUser = asyncHandler(async (req, res) => {
     }
 
 
-    //check if email exist
+
 
 
     const user = await User.findOne({ email }).lean().exec()

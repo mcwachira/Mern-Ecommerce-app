@@ -1,4 +1,5 @@
 import styled from 'styled-components'
+import { Link } from 'react-router-dom';
 import { mobile } from '../../utils/responsive'
 
 export const Container = styled.div`
@@ -48,8 +49,10 @@ export const Center = styled.div`
   text-align: center;
 `;
 
-export const Logo = styled.h1`
+export const Logo = styled(Link)`
+font-size:30px;
   font-weight: bold;
+  text-decoration:none
     ${mobile({ fontSize: '24px' })}
 
 `;
@@ -62,8 +65,10 @@ export const Right = styled.div`
 
 `;
 
-export const MenuItem = styled.div`
-  font-size: 14px;
+export const MenuItem = styled(Link)`
+  font-size: 18px;
+    text-decoration: none;
+    color:#000;
   cursor: pointer;
   margin-left: 25px;
   ${mobile({ fontSize: '12px', marginLeft: "10px" })}

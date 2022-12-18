@@ -47,12 +47,14 @@ const authRouter = require('./routes/authRoute')
 const productRouter = require('./routes/productRoute')
 const orderRouter = require('./routes/orderRoute')
 const cartRouter = require('./routes/cartRoute')
+const checkoutRouter = require('./routes/stripeRoute')
 
 app.use('/api/v1', userRouter)
 app.use('/api/v1', authRouter)
 app.use('/api/v1', productRouter)
 app.use('/api/v1', orderRouter)
 app.use('/api/v1', cartRouter)
+app.use('/api/v1', checkoutRouter)
 // app.use('/', authRouter)
 
 
