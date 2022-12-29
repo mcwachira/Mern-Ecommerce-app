@@ -7,7 +7,11 @@ yarn-error.log*
 pnpm-debug.log*
 lerna-debug.log*
 
-node_modules
+
+# ignore node/grunt dependency directories
+node_modules/
+.DS_Store
+build
 dist
 dist-ssr
 *.local
@@ -22,3 +26,5 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+.env*
