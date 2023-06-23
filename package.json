@@ -1,0 +1,11 @@
+{
+  "name": "mern-ecommerce-app",
+  "version": "1.0.0",
+  "description": "a full stack Ecommerce application built using the mern stack",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "mcwachira",
+  "license": "MIT"
+}
