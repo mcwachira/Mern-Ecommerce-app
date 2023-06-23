@@ -2,10 +2,21 @@
   "name": "mern-ecommerce-app",
   "version": "1.0.0",
   "description": "a full stack Ecommerce application built using the mern stack",
-  "main": "index.js",
+  "type": "module",
+  "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "backend/server.js ",
+    "server": "nodemon backend/server.js ",
+    "client": "npm start --prefix client ",
+    "dev": "concurrently \"npm run server\" \"npm run client\""
   },
   "author": "mcwachira",
-  "license": "MIT"
+  "license": "MIT",
+  "devDependencies": {
+    "nodemon": "^2.0.22"
+  },
+  "dependencies": {
+    "dotenv": "^16.3.1",
+    "express": "^4.18.2"
+  }
 }
