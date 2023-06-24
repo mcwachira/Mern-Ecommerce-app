@@ -10,9 +10,9 @@ const router = express.Router()
 // })
 
 
-router.get('/products',getProducts);
+router.get('/',getProducts);
 
-router.get('/products/:id', getProductById);
+router.get('/:id', getProductById);
 
 
 
