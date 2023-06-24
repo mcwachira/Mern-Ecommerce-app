@@ -1,7 +1,8 @@
-const mongoose = require('mongoose')
-const colors = require('colors');
+import mongoose from 'mongoose'
+import colors from 'colors'
 
 const connectDb = async () => {
+    console.log(process.env.MONGO_URI)
     try {
         const connect = await mongoose.connect(process.env.MONGO_URI, {
             useNewUrlParser: true,
@@ -19,4 +20,4 @@ const connectDb = async () => {
 }
 
 
-module.exports = connectDb;
+export default  connectDb;

@@ -31,6 +31,7 @@ const HomeScreen = () => {
                         <Product product={product}/>
                     </Col>
                 ))}
+
             </Row>
         </>
     )
