@@ -3,28 +3,23 @@ import axios from 'axios'
 import {useParams, Link} from 'react-router-dom'
 import Rating from "../components/Rating";
 import {Card, Col, Row ,ListGroup, Image, Button} from "react-bootstrap";
+import {useGetProductDetailsQuery} from "../redux/productsApiSlice";
+import Loader from "../Utils/Loader";
+import Message from "../Utils/Message";
 
 const ProductScreen = () => {
 
-    const [product, setProduct] = useState([]);
-
-    const { id: productId } = useParams();
-    const fetchProduct = async() => {
-        const {data} =await axios.get(`/api/products/${productId}`)
+    const {id:productId} =useParams()
 
 
-         setProduct(data)
-
-    }
-
-    useEffect(() => {
-
-        fetchProduct()
-    }, [])
-
+    const {data:product, isLoading, error} = useGetProductDetailsQuery(productId)
+    console.log(product)
 
     return (
         <>
+            {isLoading ? (<Loader/>) : error ?
+                (<Message variant='danger'> {error?.data?.message || error.error}</Message>) : (
+                    <>
         <Link to='/' className="btn btn-light my-3">
 Go Back
         </Link>
@@ -99,6 +94,9 @@ Go Back
                 </Col>
             </Row>
         </>
+    )}
+        </>
+
     )
 }
 export default ProductScreen
