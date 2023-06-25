@@ -12,7 +12,7 @@ import {
 import { FaTrash } from 'react-icons/fa';
 
 import { addToCart, removeFromCart } from '../redux/slices/cartSlice';
-import Message from "../Utils/Message";
+import Message from "../utils/Message";
 
 const CartScreen = () => {
     const navigate = useNavigate();

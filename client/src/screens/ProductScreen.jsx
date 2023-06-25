@@ -3,9 +3,9 @@ import axios from 'axios'
 import {useParams, Link, useNavigate} from 'react-router-dom'
 import Rating from "../components/Rating";
 import {Card, Col, Row ,ListGroup, Image, Button, Form} from "react-bootstrap";
-import {useGetProductDetailsQuery} from "../redux/productsApiSlice";
-import Loader from "../Utils/Loader";
-import Message from "../Utils/Message";
+import {useGetProductDetailsQuery} from "../redux/slices/productsApiSlice";
+import Loader from "../utils/Loader";
+import Message from "../utils/Message";
 import {useDispatch} from "react-redux";
 import {addToCart} from "../redux/slices/cartSlice";
 

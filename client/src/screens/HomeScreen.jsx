@@ -2,9 +2,9 @@ import React, {useState, useEffect} from 'react'
 import axios from 'axios'
 import Product from '../components/Product'
 import {Col, Row} from "react-bootstrap";
-import {useGetProductsQuery} from "../redux/productsApiSlice";
-import Loader from "../Utils/Loader";
-import Message from "../Utils/Message";
+import {useGetProductsQuery} from "../redux/slices/productsApiSlice";
+import Loader from "../utils/Loader";
+import Message from "../utils/Message";
 
 const HomeScreen = () => {
 
