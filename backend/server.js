@@ -9,6 +9,7 @@ import dotenv from 'dotenv'
 import  connectDb from './config/db.js'
 import productRoutes from "./routes/productRoutes.js";
 import userRoutes from "./routes/userRoutes.js";
+import orderRoutes from "./routes/orderRoutes.js";
 
 
 
@@ -45,6 +46,8 @@ app.use(cookieParser())
 app.use('/api/v1/products', productRoutes)
 
 app.use('/api/v1/users', userRoutes)
+
+app.use('/api/v1/orders', orderRoutes)
 
 
 //error handler
