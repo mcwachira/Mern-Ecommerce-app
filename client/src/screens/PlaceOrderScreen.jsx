@@ -22,10 +22,10 @@ const PlaceOrderScreen = () => {
     useEffect(() => {
         if (!cart.shippingAddress.address) {
             navigate('/shipping');
-        } else if (!cart.paymentMethod.paymentMethod) {
+        } else if (!cart.paymentMethod) {
             navigate('/payment');
         }
-    }, [cart.paymentMethod.paymentMethod, cart.shippingAddress.address, navigate]);
+    }, [cart.paymentMethod, cart.shippingAddress.address, navigate]);
 
     const dispatch = useDispatch();
     const placeOrderHandler = async () => {
@@ -40,8 +40,11 @@ const PlaceOrderScreen = () => {
                 totalPrice: cart.totalPrice,
             }).unwrap();
             dispatch(clearCartItems());
+
+            console.log(res)
             navigate(`/order/${res._id}`);
         } catch (err) {
+            console.log(err)
             toast.error(err);
         }
     };
@@ -65,7 +68,7 @@ const PlaceOrderScreen = () => {
                         <ListGroup.Item>
                             <h2>Payment Method</h2>
                             <strong>Method: </strong>
-                            {cart.paymentMethod.paymentMethod}
+                            {cart.paymentMethod}
                         </ListGroup.Item>
 
                         <ListGroup.Item>
