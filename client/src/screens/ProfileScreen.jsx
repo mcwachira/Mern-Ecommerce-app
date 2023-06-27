@@ -18,6 +18,9 @@ const ProfileScreen = () => {
     const [password, setPassword] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
 
+
+    const [rating, setRating] = useState(0);
+    const [review, setReview] = useState('');
     const { userInfo } = useSelector((state) => state.auth);
     const dispatch = useDispatch();
 
