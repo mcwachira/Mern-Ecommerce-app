@@ -1,12 +1,12 @@
 import express from 'express'
 import asyncHandler from "../middleware/asyncHandler.js";
-import {getMyOrders, addOrderItems, getOrderById , getAllOrders,updateOrderToDelivered , updateOrderToPaid, deleteOrder} from "../controllers/OrderController.js";
+import {getMyOrders, addOrderItems, getOrderById ,updateOrderToDelivered ,getOrders, updateOrderToPaid, deleteOrder} from "../controllers/OrderController.js";
 
 import { protect , admin} from '../middleware/authMiddleware.js'
 const router = express.Router()
 
 
-router.route('/').post(protect, addOrderItems).get(protect, admin, getAllOrders);
+router.route('/').post(protect, addOrderItems).get(protect, admin, getOrders);
 
 router.route('/mine').get(protect, getMyOrders);
 

@@ -2,7 +2,7 @@ import { Link, useParams } from 'react-router-dom';
 import {useEffect} from "react";
 import {useSelector} from "react-redux";
 import { Row, Col, ListGroup, Image, Card,Button } from 'react-bootstrap';
-import {useGetOrderDetailsQuery, usePayOrderMutation, useGetPaypalClientIdQuery} from "../redux/slices/ordersApiSAlice";
+import {useGetOrderDetailsQuery, usePayOrderMutation, useGetPaypalClientIdQuery,  useDeliverOrderMutation} from "../redux/slices/ordersApiSAlice";
 import Loader from "../utils/Loader";
 import Message from "../utils/Message";
 import {toast} from 'react-toastify'
@@ -18,6 +18,11 @@ const OrderScreen = () => {
 
     const [payOrder, {isLoading:loadingPay}] = usePayOrderMutation();
     const [{isPending}, paypalDispatch] = usePayPalScriptReducer();
+
+
+    const [deliverOrder ,{isLoading:loadingDeliver}] = useDeliverOrderMutation();
+
+
 
     const {data:paypal, isLoading:loadingPaypal, error:errorPayPal} = useGetPaypalClientIdQuery()
 

@@ -6,14 +6,19 @@ import cookieParser from 'cookie-parser'
 import { notFound, errorHandler} from './middleware/errorMiddleware.js'
 import products from './data/products.js'
 import dotenv from 'dotenv'
+
+dotenv.config();
 import  connectDb from './config/db.js'
 import productRoutes from "./routes/productRoutes.js";
 import userRoutes from "./routes/userRoutes.js";
 import orderRoutes from "./routes/orderRoutes.js";
+import path from 'path'
+import uploadRoutes from "./routes/uploadRoutes.js";
 
 
 
-dotenv.config();
+
+
 const port = process.env.PORT  || 5000;
 
 //mongodb database
@@ -48,11 +53,16 @@ app.use('/api/v1/products', productRoutes)
 app.use('/api/v1/users', userRoutes)
 
 app.use('/api/v1/orders', orderRoutes)
+app.use('/api/v1/upload', uploadRoutes)
 
 //paypal route
 app.get('/api/config/paypal', (req, res) => {
     res.send({clientId:process.env.PAYPAL_CLIENT_ID})
 })
+
+
+const __dirname = path.resolve(); //sets __dirname to current directory
+app.use('/uploads', express.static(path.join(__dirname, '/uploads')))
 
 //error handler
 app.use(notFound);
