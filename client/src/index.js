@@ -29,6 +29,7 @@ import ProductListScreen from "./screens/admin/ProductListScreen";
 import UserListScreen from "./screens/admin/UserListScreen";
 import ProductEditScreen from "./screens/admin/ProductEditScreen";
 import UserEditScreen from "./screens/admin/UserEditScreen";
+import {HelmetProvider} from "react-helmet-async";
 
 const router = createBrowserRouter(
 
@@ -75,12 +76,15 @@ const router = createBrowserRouter(
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-      <Provider store={store}>
-          <PayPalScriptProvider deferLoading={true}>
-          <RouterProvider router={router}/>
+      <HelmetProvider>
+          <Provider store={store}>
+              <PayPalScriptProvider deferLoading={true}>
+                  <RouterProvider router={router}/>
 
-      </PayPalScriptProvider >
-      </Provider>
+              </PayPalScriptProvider >
+          </Provider>
+      </HelmetProvider>
+
 
   </React.StrictMode>
 );

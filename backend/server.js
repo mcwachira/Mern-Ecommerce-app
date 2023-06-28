@@ -41,11 +41,6 @@ app.use(morgan('tiny')) //used to log request from the frontend
 //get cookies
 app.use(cookieParser())
 
-
-
-
-
-
 //routes
 
 app.use('/api/v1/products', productRoutes)
@@ -64,6 +59,20 @@ app.get('/api/config/paypal', (req, res) => {
 const __dirname = path.resolve(); //sets __dirname to current directory
 app.use('/uploads', express.static(path.join(__dirname, '/uploads')))
 
+if(process.env.NODE_ENV ==='production'){
+    //set static folder
+
+    app.use(express.static(path.join(__dirname, '/client/build')))
+
+    //any routes that is not in the api will be redirect to index.html
+
+    app.get('*', (req, res) => res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html')))
+}else{
+    app.get('/', (req, res) => {
+        res.send('api IS RUNNING ...')
+    })
+
+}
 //error handler
 app.use(notFound);
 app.use(errorHandler)
