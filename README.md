@@ -1,8 +1,9 @@
 # Full Stack E-Commerce App Built Using the Mern Stack and Redux Toolkit
 
 
-![](./mern-ecommerce.png)
 
+
+<img src="./mern-Ecommerce.png">
 ### Links
 
 - Solution URL: [Github](https://github.com/mcwachira/Mern-Ecommerce-app)
