@@ -3,7 +3,6 @@
 
 
 
-<img src="./mern-Ecommerce.png">
 ### Links
 
 - Solution URL: [Github](https://github.com/mcwachira/Mern-Ecommerce-app)
