@@ -1,34 +1,120 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Full Stack E-Commerce App Built Using the Mern Stack and Redux Toolkit
 
-## Getting Started
 
-First, run the development server:
+![](./mern-ecommerce.png)
 
-```bash
-npm run dev
-# or
-yarn dev
+### Links
+
+- Solution URL: [Github](https://github.com/mcwachira/Mern-Ecommerce-app)
+- Live Site URL: [Live](https://mernecommerce-app.onrender.com)
+<!-- toc -->
+
+- [Features](#features)
+- [Usage](#usage)
+    - [Env Variables](#env-variables)
+    - [Install Dependencies (frontend & backend)](#install-dependencies-frontend--backend)
+    - [Run](#run)
+- [Build & Deploy](#build--deploy)
+    - [Seed Database](#seed-database)
+
+*
+
+<!-- tocstop -->
+
+## Features
+
+- Full featured shopping cart
+- Product reviews and ratings
+- Top products carousel
+- Product pagination
+- Product search feature
+- User profile with orders
+- Admin product management
+- Admin user management
+- Admin Order details page
+- Mark orders as delivered option
+- Checkout process (shipping, payment method, etc)
+- PayPal / credit card integration
+- Database seeder (products & users)
+
+## Usage
+
+- Create a MongoDB database and obtain your `MongoDB URI` - [MongoDB Atlas](https://www.mongodb.com/cloud/atlas/register)
+- Create a PayPal account and obtain your `Client ID` - [PayPal Developer](https://developer.paypal.com/)
+
+### Env Variables
+
+Rename the `.env.example` file to `.env` and add the following
+
+```
+NODE_ENV = development
+PORT = 5000
+MONGO_URI = your mongodb uri
+JWT_SECRET = 'abc123'
+PAYPAL_CLIENT_ID = your paypal client id
+PAGINATION_LIMIT = 8
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Change the JWT_SECRET and PAGINATION_LIMIT to what you want
 
-You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
+### Install Dependencies (frontend & backend)
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.js`.
+```
+npm install
+cd frontend
+npm install
+```
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+### Run
 
-## Learn More
+```
 
-To learn more about Next.js, take a look at the following resources:
+# Run frontend (:3000) & backend (:5000)
+npm run dev
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+# Run backend only
+npm run server
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+## Build & Deploy
 
-## Deploy on Vercel
+```
+# Create frontend prod build
+cd frontend
+npm run build
+```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+### Seed Database
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+You can use the following commands to seed the database with some sample users and products as well as destroy all data
+
+```
+# Import data
+npm run data:import
+
+# Destroy data
+npm run data:destroy
+```
+---
+
+
+### Built with
+
+- React
+- React Bootstrap
+- Nodejs
+- Express
+- MongoDb
+- Mobile-first workflow
+
+### What I learned
+
+- Learnt How to build a Ecommerce app from teh ground app to production
+- Learnt How to use React , Node and Express to build and app.
+- Learnt How to use MongoDb to store my data
+
+
+## Author
+
+- Website - [Add your name here](https://mcwachira.com)
+- Twitter - [@mc_wachira](https:https://twitter.com/mc_wachira)
