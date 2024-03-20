@@ -10,24 +10,22 @@ import {
     updateProduct
 } from "../controllers/ProductController.js";
 import {admin, protect} from "../middleware/authMiddleware.js";
+import checkObjectId from '../middleware/checkObjectId.js';
 const router = express.Router()
 
 
 
 
 
-router.get('/',getProducts);
-
-router.post('/', protect, admin, createProduct)
-
-router.get('/:id', getProductById);
-
-router.put('/:id', protect, admin , updateProduct);
+router.route('/').get(getProducts).post(protect, admin, createProduct);
+router.route('/:id/reviews').post(protect, checkObjectId, createProductReview);
 
 router.get('/top', getTopProducts);
-
-router.post('/:id/reviews', protect, createProductReview);
-router.delete('/:id', protect, admin , deleteProduct);
+router
+    .route('/:id')
+    .get(checkObjectId, getProductById)
+    .put(protect, admin, checkObjectId, updateProduct)
+    .delete(protect, admin, checkObjectId, deleteProduct);
 
 
 

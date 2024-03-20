@@ -163,6 +163,7 @@ const getTopProducts = asyncHandler(async (req, res) => {
     res.json(products);
 });
 
+
 export {
     getProducts,
     getProductById,
