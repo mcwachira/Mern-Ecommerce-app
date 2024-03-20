@@ -10,12 +10,10 @@ import Message from "../utils/Message";
 import Loader from "../utils/Loader";
 
 
-
 const PlaceOrderScreen = () => {
     const navigate = useNavigate();
 
-    const cart = useSelector((state) => state.cart)
-    console.log(cart)
+    const cart = useSelector((state) => state.cart);
 
     const [createOrder, { isLoading, error }] = useCreateOrderMutation();
 
@@ -40,11 +38,8 @@ const PlaceOrderScreen = () => {
                 totalPrice: cart.totalPrice,
             }).unwrap();
             dispatch(clearCartItems());
-
-            console.log(res)
             navigate(`/order/${res._id}`);
         } catch (err) {
-            console.log(err)
             toast.error(err);
         }
     };
@@ -94,7 +89,8 @@ const PlaceOrderScreen = () => {
                                                     </Link>
                                                 </Col>
                                                 <Col md={4}>
-                                                    {item.qty} x ${item.price} = ${item.qty * item.price}
+                                                    {item.qty} x ${item.price} = $
+                                                    {(item.qty * (item.price * 100)) / 100}
                                                 </Col>
                                             </Row>
                                         </ListGroup.Item>
@@ -135,7 +131,9 @@ const PlaceOrderScreen = () => {
                                 </Row>
                             </ListGroup.Item>
                             <ListGroup.Item>
-                                {error && <Message variant='danger'>{error}</Message>}
+                                {error && (
+                                    <Message variant='danger'>{error.data.message}</Message>
+                                )}
                             </ListGroup.Item>
                             <ListGroup.Item>
                                 <Button
@@ -156,5 +154,4 @@ const PlaceOrderScreen = () => {
     );
 };
 
-
-export default PlaceOrderScreen
+export default PlaceOrderScreen;
